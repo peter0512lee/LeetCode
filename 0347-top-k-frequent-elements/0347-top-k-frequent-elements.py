@@ -1,6 +1,12 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        d = defaultdict()
-        for i in nums:
-            d[i] = d.get(i, 0) + 1
-        return sorted(d, key=d.get, reverse=True)[:k]
+        frequency_map = collections.defaultdict(int)
+        for num in nums:
+            frequency_map[num] += 1
+        
+        min_heap = [(-freq, num) for num, freq in frequency_map.items()]
+        heapq.heapify(min_heap)
+
+        top_k = [heapq.heappop(min_heap)[1] for _ in range(k)]
+
+        return top_k
