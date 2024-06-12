@@ -30,3 +30,13 @@
 
 <p>&nbsp;</p>
 <p><strong>Follow up:</strong>&nbsp;Could you come up with a one-pass algorithm using only&nbsp;constant extra space?</p>
+
+---
+
+### 思路
+* 使用 Two Pointers
+* 初始化在陣列的左右兩端
+* i = 0
+* 如果遇到 0，nums[i] 跟 nums[left] 交換，left++，i++
+* 如果遇到 2，nums[i] 跟 nums[right] 交換，right--，
+* 如果遇到 1，i++
