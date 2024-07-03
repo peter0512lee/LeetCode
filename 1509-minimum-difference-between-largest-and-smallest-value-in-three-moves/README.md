@@ -48,3 +48,16 @@ After performing 3 moves, the difference between the minimum and maximum is 7 - 
 	<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>
 	<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>
 </ul>
+
+### 想法
+因為是要找最大值-最小值，所以一定是對於array的最大跟最小的地方進行操作。
+我們可以得到以下結論:
+如果排序後的陣列為:
+[a1,a2,a3,a4,a5,a6,a7,a8,a9,a10]
+我們可以拿改變3次,所以會有以下組合。
+* 改變 a1,a2,a3 =>答案為 a10 - a4
+* 改變 a1,a2,a10 =>答案為 a9 - a3
+* 改變 a1,a9,a10 =>答案為 a8 - a2
+* 改變 a8,a9,a10 =>答案為 a7 - a1
+
+所以我們只需要計算以上四種組合,然後在這四種組合中最小的即為答案。
