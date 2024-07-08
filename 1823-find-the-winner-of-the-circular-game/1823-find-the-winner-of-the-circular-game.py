@@ -1,9 +1,14 @@
 class Solution:
     def findTheWinner(self, n: int, k: int) -> int:
-        p = 1
-        for i in range(1,n):
-            # here i represent number of alive people
-            # p is f(i,'cac')
-            p=(k+p-1)%(i+1)+1
-            # p is f(i+1, 'cac')
-        return p
+        q = deque()
+
+        for i in range(1, n + 1):
+            q.append(i)
+
+        while len(q) > 1:
+            for i in range(k - 1):
+                num = q.popleft()
+                q.append(num)
+            q.popleft()
+            
+        return q[0]
