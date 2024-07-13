@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/maximum-score-from-removing-substrings/?envType=daily-question&envId=2024-07-12">1717. Maximum Score From Removing Substrings</a></h2><h3>Medium</h3><hr><p>You are given a string <code>s</code> and two integers <code>x</code> and <code>y</code>. You can perform two types of operations any number of times.</p>
+<h2><a href="https://leetcode.com/problems/maximum-score-from-removing-substrings">1717. Maximum Score From Removing Substrings</a></h2><h3>Medium</h3><hr><p>You are given a string <code>s</code> and two integers <code>x</code> and <code>y</code>. You can perform two types of operations any number of times.</p>
 
 <ul>
 	<li>Remove substring <code>&quot;ab&quot;</code> and gain <code>x</code> points.
