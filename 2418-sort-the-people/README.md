@@ -34,6 +34,6 @@
 </ul>
 
 ### 思路
-使用 Dict 用來存 名字跟身高的配對，實作上可以用 `zip`
-接著將 `heights` 做 reverse sort，要 reverse 是因為預設是 ascending
-最後 iterate `heights` 同時將 name 給 append 到 result 中。
+* 使用 Dict 用來存 名字跟身高的配對，實作上可以用 `zip`
+* 接著將 `heights` 做 reverse sort，要 reverse 是因為預設是 ascending
+* 最後 iterate `heights` 同時將 name 給 append 到 result 中
