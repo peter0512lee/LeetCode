@@ -1,16 +1,20 @@
 class Solution:
     def largestNumber(self, nums: List[int]) -> str:
-        # Convert integers to strings
-        array = list(map(str, nums))
+        if not any(map(bool, nums)):
+            return '0'
         
-        # Custom sorting with a lambda function
-        array.sort(key=lambda x: x*10, reverse=True)
+        nums = list(map(str, nums))
+        if len(nums) < 2:
+            return "".join(nums)
         
-        # Handle the case where the largest number is "0"
-        if array[0] == "0":
-            return "0"
+        def compare(x, y):
+            return (int(nums[x]+nums[y])) > (int(nums[y]+nums[x]))
         
-        # Build the largest number from the sorted array
-        largest = ''.join(array)
-        
-        return largest
+        for x in range(len(nums) - 1):
+            y = x + 1
+            while x < len(nums) and y < (len(nums)):
+                if not compare(x,y):
+                    nums[y], nums[x] = nums[x], nums[y]
+                y+=1
+
+        return "".join(nums)     
