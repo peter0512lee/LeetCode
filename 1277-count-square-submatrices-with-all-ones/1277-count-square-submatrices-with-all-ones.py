@@ -1,15 +1,26 @@
 class Solution(object):
     def countSquares(self, matrix):
-        m, n = len(matrix), len(matrix[0])
+        ROWS, COLS = len(matrix), len(matrix[0])
 
-        @cache # memorize
-        def dp(i,j):
-            if matrix[i][j]==1 : 
-                if i!=0 and j!=0:
-                    return min(dp(i-1,j), dp(i,j-1), dp(i-1,j-1))+1
-                else:
-                    return 0+1
-            else:
+        cache = {}
+        def dfs(r, c):
+            if r == ROWS or c == COLS or not matrix[r][c]:
                 return 0
-        
-        return sum(dp(i,j) for i in range(m) for j in range(n))
+
+            if (r, c) in cache:
+                return cache[(r, c)]
+
+            cache[(r, c)] = 1 + min(
+                dfs(r + 1, c),
+                dfs(r, c + 1),
+                dfs(r + 1, c + 1)
+            )
+
+            return cache[(r, c)]
+
+        res = 0
+        for r in range(ROWS):
+            for c in range(COLS):
+                res += dfs(r, c)
+
+        return res
