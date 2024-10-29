@@ -1,24 +1,30 @@
 class Solution:
     def maxMoves(self, grid: List[List[int]]) -> int:
-        rows, cols = len(grid), len(grid[0])
-        ans = 0
-        q = deque((row, 0) for row in range(rows))
-        dist = [[0] * cols for _ in range(rows)]
-        directions = ((-1, 1), (0, 1), (1, 1))
+        """
+        using BFS to explore all possible distance and update the max moves
+        """
+
+        # initialize
+        n_rows, n_cols = len(grid), len(grid[0])
+        q = deque((row, 0) for row in range(n_rows))
+        distances = [[0] * n_cols for _ in range(n_rows)]
+        directions = [(-1, 1), (0, 1), (1, 1)]
+        max_moves = 0
 
         while q:
-            i, j = q.popleft()
-            for d in directions:
-                new_row, new_col = i + d[0], j + d[1]
-
+            cur_x, cur_y = q.popleft()
+            for dx, dy in directions:
+                nxt_x, nxt_y = cur_x + dx, cur_y + dy
+                
+                # check the condition
                 if (
-                    0 <= new_row < rows and
-                    0 <= new_col < cols and
-                    grid[i][j] < grid[new_row][new_col] and
-                    dist[new_row][new_col] < dist[i][j] + 1
+                    0 <= nxt_x < n_rows and
+                    0 <= nxt_y < n_cols and
+                    grid[nxt_x][nxt_y] > grid[cur_x][cur_y] and
+                    distances[nxt_x][nxt_y] < distances[cur_x][cur_y] + 1
                 ):
-                    dist[new_row][new_col] = dist[i][j] + 1
-                    ans = max(ans, dist[new_row][new_col])
-                    q.append((new_row, new_col))
+                    distances[nxt_x][nxt_y] = distances[cur_x][cur_y] + 1
+                    max_moves = max(max_moves, distances[nxt_x][nxt_y])
+                    q.append((nxt_x, nxt_y))
 
-        return ans
+        return max_moves
